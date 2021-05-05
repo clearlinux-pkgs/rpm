@@ -23,13 +23,13 @@ Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
  delete mode 100644 scripts/mono-find-requires
 
 diff --git a/fileattrs/Makefile.am b/fileattrs/Makefile.am
-index 4485fdc..0740cdc 100644
+index 1895f44..0d8595b 100644
 --- a/fileattrs/Makefile.am
 +++ b/fileattrs/Makefile.am
 @@ -7,7 +7,6 @@ fattrsdir = $(rpmconfigdir)/fileattrs
  
  fattrs_DATA = \
- 	debuginfo.attr desktop.attr elf.attr elfoptimized.attr font.attr libtool.attr metainfo.attr \
+ 	debuginfo.attr desktop.attr elf.attr font.attr libtool.attr metainfo.attr \
 -	perl.attr perllib.attr pkgconfig.attr python.attr ocaml.attr script.attr \
 -	mono.attr
 +	perl.attr perllib.attr pkgconfig.attr python.attr ocaml.attr script.attr

@@ -251,7 +251,6 @@ rm -f %{buildroot}/usr/lib/rpm/fileattrs/perllib.attr
 /usr/lib/rpm/fileattrs/debuginfo.attr
 /usr/lib/rpm/fileattrs/desktop.attr
 /usr/lib/rpm/fileattrs/elf.attr
-/usr/lib/rpm/fileattrs/elfoptimized.attr
 /usr/lib/rpm/fileattrs/font.attr
 /usr/lib/rpm/fileattrs/libtool.attr
 /usr/lib/rpm/fileattrs/metainfo.attr
