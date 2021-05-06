@@ -4,7 +4,7 @@
 #
 Name     : rpm
 Version  : 4.14.2.1
-Release  : 149
+Release  : 150
 URL      : http://ftp.rpm.org/releases/rpm-4.14.x/rpm-4.14.2.1.tar.bz2
 Source0  : http://ftp.rpm.org/releases/rpm-4.14.x/rpm-4.14.2.1.tar.bz2
 Summary  : RPM Package Manager
@@ -73,6 +73,8 @@ Patch20: 0020-Skip-HEREDOCs-when-parsing-perl-virtual-Provides.patch
 Patch21: 0021-Disable-mono-fileattrs.patch
 Patch22: 0022-rpm2cpio-cannot-handle-files-over-4GB-error-out-clea.patch
 Patch23: 0023-Build-with-Lua-5.3-for-now.patch
+Patch24: 0024-elf.attr-exclude-openmpi-directories.patch
+Patch25: 0025-elf.attr-exclude-mingw-library-tree.patch
 
 %description
 This is RPM, the RPM Package Manager.
@@ -184,13 +186,15 @@ cd %{_builddir}/rpm-4.14.2.1
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
+%patch24 -p1
+%patch25 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1615400202
+export SOURCE_DATE_EPOCH=1620276275
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -217,7 +221,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1615400202
+export SOURCE_DATE_EPOCH=1620276275
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-4.14.2.1/COPYING %{buildroot}/usr/share/package-licenses/rpm/41fee52e30855f0bab4a1df3a3aa0147a67f8459

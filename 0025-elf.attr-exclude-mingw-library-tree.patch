@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Wed, 5 May 2021 15:58:07 -0700
+Subject: [PATCH] elf.attr: exclude mingw library tree
+
+The deps for the mingw library tree will be handled by a `mingw.attr` in
+clr-rpm-config.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ fileattrs/elf.attr | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/fileattrs/elf.attr b/fileattrs/elf.attr
+index 1d70838..18fb600 100644
+--- a/fileattrs/elf.attr
++++ b/fileattrs/elf.attr
+@@ -2,4 +2,4 @@
+ %__elf_requires		%{_rpmconfigdir}/elfdeps --requires %{?__filter_GLIBC_PRIVATE:--filter-private}
+ %__elf_magic		ELF (32|64)-bit.*$
+ %__elf_flags		exeonly
+-%__elf_exclude_path     ^(/usr/lib/debug|(/usr)?/lib(64)?/(i686|x86_64|sse2|haswell|tls|openmpi))/
++%__elf_exclude_path     ^(/usr/lib/debug|/usr/mingw/lib|/usr/x86_64-generic-linux/x86_64-w64-mingw32/lib|(/usr)?/lib(64)?/(i686|x86_64|sse2|haswell|tls|openmpi))/
