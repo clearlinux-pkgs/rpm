@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Auke Kok <auke-jan.h.kok@intel.com>
+Date: Tue, 27 Aug 2019 11:00:34 -0700
+Subject: [PATCH] Don't emit compiler version requirement.
+
+We're not getting the proper provides, and it's not needed for
+a distro like clearlinux where we rebuild dependent packages
+anyway.
+
+[2021-09-15]: Ported for rpm 4.17.0 update; the -c option to the new
+ocaml dep generator appears to be a no-op, so we can likely drop this
+patch eventually.
+
+Ported-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ fileattrs/ocaml.attr | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/fileattrs/ocaml.attr b/fileattrs/ocaml.attr
+index 4bd65c1..68d35c9 100644
+--- a/fileattrs/ocaml.attr
++++ b/fileattrs/ocaml.attr
+@@ -1,5 +1,5 @@
+ %__ocaml_provides	%{_rpmconfigdir}/ocamldeps.sh --provides
+-%__ocaml_requires	%{_rpmconfigdir}/ocamldeps.sh --requires
++%__ocaml_requires	%{_rpmconfigdir}/ocamldeps.sh --requires -c
+ %__ocaml_magic		^(ELF|Objective caml|OCaml) .*$
+ %__ocaml_path		.(cma|cmi|cmo|cmx|cmxa|cmxs)$
+ %__ocaml_flags		magic_and_path

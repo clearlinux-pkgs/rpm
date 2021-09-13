@@ -1,7 +1,12 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+acl-dev
+bison
+bzip2-dev
+doxygen
+elfutils-dev
 file-dev
-python3-dev
+gnupg
 libcap-dev
-compat-lua-53-dev
-compat-lua-53-staticdev
+lua-dev
+popt-dev

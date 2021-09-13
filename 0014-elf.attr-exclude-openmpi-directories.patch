@@ -10,18 +10,21 @@ openmpi ELF libraries via a distro-specific `openmpi.attr` in clr-rpm-config.
 Any package/bundle that requires these libraries must explicitly Require the
 -openmpi subpackages.
 
+[2021-09-10]: Ported for rpm 4.17.0 update
+
+Ported-by: Patrick McCarty <patrick.mccarty@intel.com>
 Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
 ---
  fileattrs/elf.attr | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/fileattrs/elf.attr b/fileattrs/elf.attr
-index 7964b67..1d70838 100644
+index 959d966..22e6492 100644
 --- a/fileattrs/elf.attr
 +++ b/fileattrs/elf.attr
-@@ -2,4 +2,4 @@
- %__elf_requires		%{_rpmconfigdir}/elfdeps --requires %{?__filter_GLIBC_PRIVATE:--filter-private}
+@@ -1,4 +1,4 @@
+ %__elf_provides		%{_rpmconfigdir}/elfdeps --provides
+ %__elf_requires		%{_rpmconfigdir}/elfdeps --requires
  %__elf_magic		ELF (32|64)-bit.*$
- %__elf_flags		exeonly
 -%__elf_exclude_path     ^(/usr/lib/debug|(/usr)?/lib(64)?/(i686|x86_64|sse2|haswell|tls))/
 +%__elf_exclude_path     ^(/usr/lib/debug|(/usr)?/lib(64)?/(i686|x86_64|sse2|haswell|tls|openmpi))/

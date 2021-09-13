@@ -13,10 +13,10 @@ Signed-off-by: Leandro Dorileo <leandro.maciel.dorileo@intel.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/build/files.c b/build/files.c
-index 2de6c9b..10b88ad 100644
+index 5b88a73..be4efcd 100644
 --- a/build/files.c
 +++ b/build/files.c
-@@ -46,9 +46,9 @@
+@@ -47,9 +47,9 @@
   */
  #define BUILD_ID_DIR		"/usr/lib/.build-id"
  #define DEBUG_SRC_DIR		"/usr/src/debug"

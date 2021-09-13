@@ -1,6 +1,6 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Leandro Dorileo <leandro.maciel.dorileo@intel.com>
-Date: Thu, 19 Sep 2019 14:38:56 -0700
+From: Arjan van de Ven <arjan@linux.intel.com>
+Date: Sun, 11 Dec 2016 00:19:39 +0000
 Subject: [PATCH] support lib32 pkgconfig files
 
 Ported-by: Leandro Dorileo <leandro.maciel.dorileo@intel.com>
