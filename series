@@ -13,3 +13,4 @@
 0013-fix-debuginfo-build-id-matching-code.patch
 0014-elf.attr-exclude-openmpi-directories.patch
 0015-elf.attr-exclude-mingw-library-tree.patch
+0016-Remove-libtool-archive-symlinks-too.patch

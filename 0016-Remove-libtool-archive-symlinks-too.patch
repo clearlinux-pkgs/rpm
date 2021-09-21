@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Mon, 20 Sep 2021 21:25:50 -0700
+Subject: [PATCH] Remove libtool archive symlinks, too
+
+Fixes the build of `compat-libpng-soname12` and maybe others.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ scripts/brp-remove-la-files | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/brp-remove-la-files b/scripts/brp-remove-la-files
+index f184139..bf0016f 100755
+--- a/scripts/brp-remove-la-files
++++ b/scripts/brp-remove-la-files
+@@ -5,4 +5,4 @@ if [ -z "$RPM_BUILD_ROOT" ] || [ "$RPM_BUILD_ROOT" = "/" ]; then
+   exit 0
+ fi
+ 
+-find "$RPM_BUILD_ROOT" -name "*.la" -type f -delete
++find "$RPM_BUILD_ROOT" -name "*.la" \( -type f -o -type l \) -delete

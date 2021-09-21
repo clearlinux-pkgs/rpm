@@ -4,7 +4,7 @@
 #
 Name     : rpm
 Version  : 4.17.0
-Release  : 154
+Release  : 155
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.17.x/rpm-4.17.0.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.17.x/rpm-4.17.0.tar.bz2
 Summary  : RPM Package Manager
@@ -68,6 +68,7 @@ Patch12: 0012-discover-uid0-based-on-usr-share-defaults.patch
 Patch13: 0013-fix-debuginfo-build-id-matching-code.patch
 Patch14: 0014-elf.attr-exclude-openmpi-directories.patch
 Patch15: 0015-elf.attr-exclude-mingw-library-tree.patch
+Patch16: 0016-Remove-libtool-archive-symlinks-too.patch
 
 %description
 This is RPM, the RPM Package Manager.
@@ -171,13 +172,14 @@ cd %{_builddir}/rpm-4.17.0
 %patch13 -p1
 %patch14 -p1
 %patch15 -p1
+%patch16 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1631571791
+export SOURCE_DATE_EPOCH=1632198603
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -212,7 +214,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1631571791
+export SOURCE_DATE_EPOCH=1632198603
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-4.17.0/COPYING %{buildroot}/usr/share/package-licenses/rpm/588760a9f446cebfc4b61485cd09cd768908337f
