@@ -1,0 +1,14 @@
+Due to ambiguity in content, we'd like our build id debuginfo files to be
+real files and not symlinks
+
+--- rpm-4.17.0/build/files.c~	2021-08-20 08:44:56.000000000 +0000
++++ rpm-4.17.0/build/files.c	2021-10-07 20:00:06.442965559 +0000
+@@ -1748,7 +1748,7 @@
+ 		  isDbg ? ".debug" : "");
+     }
+ 
+-    if (!exists && symlink(targetpath, linkpath) < 0) {
++    if (!exists && link(targetpath, linkpath) < 0) {
+ 	rc = 1;
+ 	rpmlog(RPMLOG_ERR, "%s: %s -> %s: %m\n",
+ 	       linkerr, linkpath, targetpath);
