@@ -4,7 +4,7 @@
 #
 Name     : rpm
 Version  : 4.17.0
-Release  : 162
+Release  : 163
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.17.x/rpm-4.17.0.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.17.x/rpm-4.17.0.tar.bz2
 Summary  : RPM Package Manager
@@ -27,8 +27,6 @@ BuildRequires : automake
 BuildRequires : automake-dev
 BuildRequires : bison
 BuildRequires : bzip2-dev
-BuildRequires : clr-rpm-config
-BuildRequires : debugedit
 BuildRequires : doxygen
 BuildRequires : elfutils-dev
 BuildRequires : file-dev
@@ -51,9 +49,6 @@ BuildRequires : pkgconfig(python3)
 BuildRequires : pkgconfig(sqlite3)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : popt-dev
-BuildRequires : python-rpm-packaging
-BuildRequires : unzip
-BuildRequires : zip
 Patch1: 0001-Ensure-lib-is-used-and-not-lib64.patch
 Patch2: 0002-add-an-fflush.patch
 Patch3: 0003-skip-pkgconfig-dep.patch
@@ -176,7 +171,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633741965
+export SOURCE_DATE_EPOCH=1656314889
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -211,15 +206,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1633741965
+export SOURCE_DATE_EPOCH=1656314889
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-4.17.0/COPYING %{buildroot}/usr/share/package-licenses/rpm/588760a9f446cebfc4b61485cd09cd768908337f
 %make_install
 %find_lang rpm
 ## Remove excluded files
-rm -f %{buildroot}/usr/lib/rpm/fileattrs/perl.attr
-rm -f %{buildroot}/usr/lib/rpm/fileattrs/perllib.attr
+rm -f %{buildroot}*/usr/lib/rpm/fileattrs/perl.attr
+rm -f %{buildroot}*/usr/lib/rpm/fileattrs/perllib.attr
 
 %files
 %defattr(-,root,root,-)
