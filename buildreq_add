@@ -10,3 +10,4 @@ gnupg
 libcap-dev
 lua-dev
 popt-dev
+zstd-dev

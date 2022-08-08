@@ -13,3 +13,4 @@
 0013-fix-debuginfo-build-id-matching-code.patch
 0014-Remove-libtool-archive-symlinks-too.patch
 #hardlink-buildid.patch
+havezstd.patch
