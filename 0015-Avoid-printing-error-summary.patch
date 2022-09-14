@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Wed, 14 Sep 2022 06:13:08 +0000
+Subject: [PATCH] Avoid printing error summary
+
+Autospec already detects the unpackaged file listing and other errors
+that might appear at the end of a build, so there's no need to duplicate
+the output.
+
+Also, we occasionally see the summary output interleaved with the
+original unpackaged file listing, so hopefully suppressing the summary
+will avoid that issue.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ build/build.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/build/build.c b/build/build.c
+index 3576aa0..e2e0962 100644
+--- a/build/build.c
++++ b/build/build.c
+@@ -410,11 +410,13 @@ exit:
+     freeStringBuf(sink);
+     free(cookie);
+     spec->rootDir = NULL;
++#if 0
+     if (rc != RPMRC_OK && rc != RPMRC_MISSINGBUILDREQUIRES &&
+ 	    rpmlogGetNrecs() > 0) {
+ 	rpmlog(RPMLOG_NOTICE, _("\n\nRPM build errors:\n"));
+ 	rpmlogPrint(NULL);
+     }
++#endif
+     rpmugFree();
+     if (missing_buildreqs && !rc) {
+ 	rc = RPMRC_MISSINGBUILDREQUIRES;

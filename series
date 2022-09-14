@@ -12,4 +12,4 @@
 0012-discover-uid0-based-on-usr-share-defaults.patch
 0013-fix-debuginfo-build-id-matching-code.patch
 0014-Remove-libtool-archive-symlinks-too.patch
-#hardlink-buildid.patch
+0015-Avoid-printing-error-summary.patch
