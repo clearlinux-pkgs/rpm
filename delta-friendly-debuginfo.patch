@@ -1,0 +1,13 @@
+--- rpm-4.17.0/macros.in~	2021-08-20 08:44:56.000000000 +0000
++++ rpm-4.17.0/macros.in	2022-10-12 18:40:21.906380894 +0000
+@@ -167,8 +167,8 @@
+     %{?_include_minidebuginfo:-m} \\\
+     %{?_include_gdb_index:-i} \\\
+     %{?_unique_build_ids:--build-id-seed "%{VERSION}-%{RELEASE}"} \\\
+-    %{?_unique_debug_names:--unique-debug-suffix "-%{VERSION}-%{RELEASE}.%{_arch}"} \\\
+-    %{?_unique_debug_srcs:--unique-debug-src-base "%{name}-%{VERSION}-%{RELEASE}.%{_arch}"} \\\
++    %{?_unique_debug_names:--unique-debug-suffix "-%{VERSION}.%{_arch}"} \\\
++    %{?_unique_debug_srcs:--unique-debug-src-base "%{name}-%{VERSION}.%{_arch}"} \\\
+     %{?_find_debuginfo_dwz_opts} \\\
+     %{?_find_debuginfo_opts} \\\
+     %{?_debugsource_packages:-S debugsourcefiles.list} \\\
