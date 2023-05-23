@@ -1,21 +1,24 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Leandro Dorileo <leandro.maciel.dorileo@intel.com>
-Date: Thu, 19 Sep 2019 12:37:00 -0700
+From b02300e0c224d94481ff513f85ed46d3f6dd0842 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 23 May 2023 10:08:21 -0700
 Subject: [PATCH] discover uid0 based on /usr/share/defaults
 
+[2023-05-23]: Ported for rpm 4.18.1 update
 [2021-09-10]: Ported for rpm 4.17.0 update
 
 Ported-by: Patrick McCarty <patrick.mccarty@intel.com>
+Ported-by: William Douglas <william.douglas@intel.com>
 Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  configure.ac | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 6b161dc..5ef6114 100644
+index e6676c5..1bdb2d1 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -819,8 +819,8 @@ AS_IF([test "$enable_plugins" != no],[
+@@ -873,8 +873,8 @@ AS_IF([test "$enable_plugins" != no],[
  AC_SUBST(WITH_AUDIT_LIB)
  AM_CONDITIONAL(AUDIT,[test "$with_audit" = yes])
  
@@ -23,6 +26,9 @@ index 6b161dc..5ef6114 100644
 -group_with_gid0=$(awk -F: '$3==0 {print $1;exit}' /etc/group)
 +user_with_uid0=$(awk -F: '$3==0 {print $1;exit}' /usr/share/defaults/etc/passwd)
 +group_with_gid0=$(awk -F: '$3==0 {print $1;exit}' /usr/share/defaults/etc/group)
+ if test -z "$user_with_uid0" ; then user_with_uid0=root ; fi
+ if test -z "$group_with_gid0" ; then group_with_gid0=root ; fi
  AC_DEFINE_UNQUOTED([UID_0_USER],["$user_with_uid0"],[Get the user name having userid 0])
- AC_DEFINE_UNQUOTED([GID_0_GROUP],["$group_with_gid0"],[Get the group name having groupid 0])
- 
+-- 
+2.40.1
+

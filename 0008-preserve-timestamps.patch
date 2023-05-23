@@ -1,10 +1,13 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Arjan van de Ven <arjan@linux.intel.com>
-Date: Sat, 14 Jan 2017 03:52:55 +0000
+From 093c07236ddff3d874ccc820087d2da57d5b8970 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 23 May 2023 09:54:49 -0700
 Subject: [PATCH] preserve timestamps
 
 Port note: the pack.c bits were added upstream by commit:
 b8a54d6a1e9bb6140b6b47e23dc707e4b967537e
+
+[2023-05-23]: Ported for rpm 4.18.1 update: no changes to the patch
+but the surrounding script changed and thus needed to be reapplied.
 
 [2021-09-10]: Ported for rpm 4.17.0 update: brp-strip-shared script
 removed, find-debuginfo.sh script moved to external debugedit project,
@@ -13,8 +16,10 @@ parallelize.
 
 Ported-by: Thiago Macieira <thiago.macieira@intel.com>
 Ported-by: Patrick McCarty <patrick.mccarty@intel.com>
+Ported-by: William Douglas <william.douglas@intel.com>
 Signed-off-by: Leandro Dorileo <leandro.maciel.dorileo@intel.com>
 Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  scripts/brp-strip                | 2 +-
  scripts/brp-strip-comment-note   | 2 +-
@@ -22,20 +27,20 @@ Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
  3 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/scripts/brp-strip b/scripts/brp-strip
-index a6734f5..f112f34 100755
+index 6825e41..2478df4 100755
 --- a/scripts/brp-strip
 +++ b/scripts/brp-strip
 @@ -14,4 +14,4 @@ esac
  
  # Strip ELF binaries
- find "$RPM_BUILD_ROOT" -type f \! -regex "${RPM_BUILD_ROOT}/*usr/lib/debug.*" \! -name "*.ko" -print0 | \
--    xargs -0 -r -P$NCPUS -n32 sh -c "file \"\$@\" | sed -n -e 's/^\(.*\):[ 	]*ELF.*, not stripped.*/\1/p' | xargs -I\{\} $STRIP -g \{\}" ARG0
-+    xargs -0 -r -P$NCPUS -n32 sh -c "file \"\$@\" | sed -n -e 's/^\(.*\):[ 	]*ELF.*, not stripped.*/\1/p' | xargs -I\{\} $STRIP -p -g \{\}" ARG0
+ find "$RPM_BUILD_ROOT" -type f \! -regex "${RPM_BUILD_ROOT}/*usr/lib/debug.*" \! -name "*.go" -print0 | \
+-    xargs -0 -r -P$NCPUS -n32 sh -c "file \"\$@\" | sed -n -e 's/^\(.*\):[ 	]*ELF.*, not stripped.*/\1/p' | grep -v 'no machine' | xargs -I\{\} $STRIP -g \{\}" ARG0
++    xargs -0 -r -P$NCPUS -n32 sh -c "file \"\$@\" | sed -n -e 's/^\(.*\):[ 	]*ELF.*, not stripped.*/\1/p' | grep -v 'no machine' | xargs -I\{\} $STRIP -p -g \{\}" ARG0
 diff --git a/scripts/brp-strip-comment-note b/scripts/brp-strip-comment-note
-index a90be71..0a586ee 100755
+index baf8537..a709e4b 100755
 --- a/scripts/brp-strip-comment-note
 +++ b/scripts/brp-strip-comment-note
-@@ -22,5 +22,5 @@ for f in `find "$RPM_BUILD_ROOT" -type f \( -perm -0100 -or -perm -0010 -or -per
+@@ -21,5 +21,5 @@ for f in `find "$RPM_BUILD_ROOT" -type f \( -perm -0100 -or -perm -0010 -or -per
  		grep ALLOC >/dev/null; then
  		note=
  	fi
@@ -52,3 +57,6 @@ index c10e247..d8cfc3f 100755
  find "$RPM_BUILD_ROOT" -type f \! -regex "${RPM_BUILD_ROOT}/*usr/lib/debug.*" -print0 | \
 -    xargs -0 -r -P$NCPUS -n32 sh -c "file \"\$@\" | sed 's/:  */: /' | grep 'current ar archive' | sed -n -e 's/^\(.*\):[  ]*current ar archive/\1/p' | xargs -d '\n' -I\{\} $STRIP -g \{\}" ARG0
 +    xargs -0 -r -P$NCPUS -n32 sh -c "file \"\$@\" | sed 's/:  */: /' | grep 'current ar archive' | sed -n -e 's/^\(.*\):[  ]*current ar archive/\1/p' | xargs -d '\n' -I\{\} $STRIP -p -g \{\}" ARG0
+-- 
+2.40.1
+

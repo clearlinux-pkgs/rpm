@@ -1,6 +1,6 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Patrick McCarty <patrick.mccarty@intel.com>
-Date: Wed, 14 Sep 2022 06:13:08 +0000
+From 17e2de6baed2c9eae391b040b5dd43ee2687aa95 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 23 May 2023 10:16:37 -0700
 Subject: [PATCH] Avoid printing error summary
 
 Autospec already detects the unpackaged file listing and other errors
@@ -11,26 +11,32 @@ Also, we occasionally see the summary output interleaved with the
 original unpackaged file listing, so hopefully suppressing the summary
 will avoid that issue.
 
+Ported-by: William Douglas <william.douglas@intel.com>
 Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  build/build.c | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/build/build.c b/build/build.c
-index 3576aa0..e2e0962 100644
+index 632ef66..62f8ffe 100644
 --- a/build/build.c
 +++ b/build/build.c
-@@ -410,11 +410,13 @@ exit:
-     freeStringBuf(sink);
-     free(cookie);
-     spec->rootDir = NULL;
+@@ -460,12 +460,14 @@ exit:
+ 	    rpmlogPrintByMask(NULL, maskWarn);
+ 	}
+ 
 +#if 0
-     if (rc != RPMRC_OK && rc != RPMRC_MISSINGBUILDREQUIRES &&
- 	    rpmlogGetNrecs() > 0) {
- 	rpmlog(RPMLOG_NOTICE, _("\n\nRPM build errors:\n"));
- 	rpmlogPrint(NULL);
-     }
+ 	if (rc != RPMRC_OK && rc != RPMRC_MISSINGBUILDREQUIRES) {
+ 	    if (rpmlogGetNrecsByMask(maskErrs)) {
+ 		rpmlog(RPMLOG_NOTICE, _("\nRPM build errors:\n"));
+ 		rpmlogPrintByMask(NULL, maskErrs);
+ 	    }
+ 	}
 +#endif
+     }
+ 
      rpmugFree();
-     if (missing_buildreqs && !rc) {
- 	rc = RPMRC_MISSINGBUILDREQUIRES;
+-- 
+2.40.1
+
