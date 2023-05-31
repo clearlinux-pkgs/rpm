@@ -1,0 +1,30 @@
+From 466d53be24a072305ec7ed7c8b9eac8df664dfba Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 31 May 2023 12:27:58 -0700
+Subject: [PATCH] Skip checks for rdb files
+
+Unable to figure out why the R ecosystem's rdb files seem to include
+the BUILDROOT as part of the bindings path so skip checking these
+files for now.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ scripts/check-buildroot | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/check-buildroot b/scripts/check-buildroot
+index d978206..242f144 100755
+--- a/scripts/check-buildroot
++++ b/scripts/check-buildroot
+@@ -28,7 +28,7 @@ NCPUS=${RPM_BUILD_NCPUS:-1}
+ 
+ find "$RPM_BUILD_ROOT" \! \( \
+     -name '*.pyo' -o -name '*.pyc' -o -name '*.elc' -o -name '.packlist' \
+-    -o -name '*.src.rpm' \
++    -o -name '*.src.rpm' -o -name '*.rdb' \
+     \) -type f -print0 | \
+     LANG=C xargs -0r -P$NCPUS -n16 grep -lF "$RPM_BUILD_ROOT" >>$tmp
+ 
+-- 
+2.40.1
+

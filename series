@@ -13,4 +13,5 @@
 0013-fix-debuginfo-build-id-matching-code.patch
 #0014-Remove-libtool-archive-symlinks-too.patch
 0015-Avoid-printing-error-summary.patch
+0016-Skip-checks-for-rdb-files.patch
 delta-friendly-debuginfo.patch

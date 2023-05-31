@@ -5,7 +5,7 @@
 #
 Name     : rpm
 Version  : 4.18.1
-Release  : 171
+Release  : 172
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Summary  : RPM Package Manager
@@ -61,7 +61,8 @@ Patch10: 0011-Force-locale-files-not-to-be-executable.patch
 Patch11: 0012-discover-uid0-based-on-usr-share-defaults.patch
 Patch12: 0013-fix-debuginfo-build-id-matching-code.patch
 Patch13: 0015-Avoid-printing-error-summary.patch
-Patch14: delta-friendly-debuginfo.patch
+Patch14: 0016-Skip-checks-for-rdb-files.patch
+Patch15: delta-friendly-debuginfo.patch
 
 %description
 This is RPM, the RPM Package Manager.
@@ -142,27 +143,28 @@ python3 components for the rpm package.
 %prep
 %setup -q -n rpm-4.18.1
 cd %{_builddir}/rpm-4.18.1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
+%patch -P 3 -p1
+%patch -P 4 -p1
+%patch -P 5 -p1
+%patch -P 6 -p1
+%patch -P 7 -p1
+%patch -P 8 -p1
+%patch -P 9 -p1
+%patch -P 10 -p1
+%patch -P 11 -p1
+%patch -P 12 -p1
+%patch -P 13 -p1
+%patch -P 14 -p1
+%patch -P 15 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684863361
+export SOURCE_DATE_EPOCH=1685567808
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -197,7 +199,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1684863361
+export SOURCE_DATE_EPOCH=1685567808
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-%{version}/COPYING %{buildroot}/usr/share/package-licenses/rpm/588760a9f446cebfc4b61485cd09cd768908337f || :
