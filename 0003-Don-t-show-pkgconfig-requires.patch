@@ -1,0 +1,42 @@
+From 914e8ea7c53c813cb7b0842d38b0f2fdd6ab0c7e Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Mon, 5 Jun 2023 13:54:50 -0700
+Subject: [PATCH] Don't show pkgconfig requires
+
+This isn't content we want our rpms to depend on as autospec is better
+suited to this kind of dection.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ scripts/pkgconfigdeps.sh | 15 ---------------
+ 1 file changed, 15 deletions(-)
+
+diff --git a/scripts/pkgconfigdeps.sh b/scripts/pkgconfigdeps.sh
+index ef45818..78fca5f 100755
+--- a/scripts/pkgconfigdeps.sh
++++ b/scripts/pkgconfigdeps.sh
+@@ -40,21 +40,6 @@ case $1 in
+     done
+     ;;
+ -R|--requires)
+-    while read filename ; do
+-    case "${filename}" in
+-    *.pc)
+-	i="`expr $i + 1`"
+-	[ $i -eq 1 ] && echo "$pkgconfig"
+-	DIR="`dirname ${filename}`"
+-	export PKG_CONFIG_PATH="$DIR:$DIR/../../share/pkgconfig"
+-	$pkgconfig --print-requires --print-requires-private "$filename" 2> /dev/null | while read n r v ; do
+-	    [ -n "$n" ] || continue
+-	    echo -n "pkgconfig($n) "
+-	    [ -n "$r" ] && [ -n "$v" ] && echo -n "$r" "$v"
+-	    echo
+-	done
+-    esac
+-    done
+     ;;
+ esac
+ exit 0
+-- 
+2.40.1
+

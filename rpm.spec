@@ -5,7 +5,7 @@
 #
 Name     : rpm
 Version  : 4.18.1
-Release  : 172
+Release  : 173
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Summary  : RPM Package Manager
@@ -50,7 +50,7 @@ BuildRequires : zstd-dev
 %define debug_package %{nil}
 Patch1: 0001-Ensure-lib-is-used-and-not-lib64.patch
 Patch2: 0002-add-an-fflush.patch
-Patch3: 0003-skip-pkgconfig-dep.patch
+Patch3: 0003-Don-t-show-pkgconfig-requires.patch
 Patch4: 0005-fileattrs-Ensure-we-match-all-binaries-for-elf-depen.patch
 Patch5: 0006-Add-ldconfig-post-transaction-hook.patch
 Patch6: 0007-support-lib32-pkgconfig-files.patch
@@ -164,7 +164,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685567808
+export SOURCE_DATE_EPOCH=1685998893
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -199,7 +199,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1685567808
+export SOURCE_DATE_EPOCH=1685998893
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-%{version}/COPYING %{buildroot}/usr/share/package-licenses/rpm/588760a9f446cebfc4b61485cd09cd768908337f || :
