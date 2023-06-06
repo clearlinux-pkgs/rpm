@@ -5,7 +5,7 @@
 #
 Name     : rpm
 Version  : 4.18.1
-Release  : 173
+Release  : 174
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Summary  : RPM Package Manager
@@ -50,19 +50,18 @@ BuildRequires : zstd-dev
 %define debug_package %{nil}
 Patch1: 0001-Ensure-lib-is-used-and-not-lib64.patch
 Patch2: 0002-add-an-fflush.patch
-Patch3: 0003-Don-t-show-pkgconfig-requires.patch
-Patch4: 0005-fileattrs-Ensure-we-match-all-binaries-for-elf-depen.patch
-Patch5: 0006-Add-ldconfig-post-transaction-hook.patch
-Patch6: 0007-support-lib32-pkgconfig-files.patch
-Patch7: 0008-preserve-timestamps.patch
-Patch8: 0009-rpm-use-localhost-as-hostname-for-building-all-packa.patch
-Patch9: 0010-fileattrs-Don-t-scan-glibc-auto-search-dirs-for-Prov.patch
-Patch10: 0011-Force-locale-files-not-to-be-executable.patch
-Patch11: 0012-discover-uid0-based-on-usr-share-defaults.patch
-Patch12: 0013-fix-debuginfo-build-id-matching-code.patch
-Patch13: 0015-Avoid-printing-error-summary.patch
-Patch14: 0016-Skip-checks-for-rdb-files.patch
-Patch15: delta-friendly-debuginfo.patch
+Patch3: 0005-fileattrs-Ensure-we-match-all-binaries-for-elf-depen.patch
+Patch4: 0006-Add-ldconfig-post-transaction-hook.patch
+Patch5: 0007-support-lib32-pkgconfig-files.patch
+Patch6: 0008-preserve-timestamps.patch
+Patch7: 0009-rpm-use-localhost-as-hostname-for-building-all-packa.patch
+Patch8: 0010-fileattrs-Don-t-scan-glibc-auto-search-dirs-for-Prov.patch
+Patch9: 0011-Force-locale-files-not-to-be-executable.patch
+Patch10: 0012-discover-uid0-based-on-usr-share-defaults.patch
+Patch11: 0013-fix-debuginfo-build-id-matching-code.patch
+Patch12: 0015-Avoid-printing-error-summary.patch
+Patch13: 0016-Skip-checks-for-rdb-files.patch
+Patch14: 0017-delta-friendly-debuginfo.patch
 
 %description
 This is RPM, the RPM Package Manager.
@@ -157,14 +156,13 @@ cd %{_builddir}/rpm-4.18.1
 %patch -P 12 -p1
 %patch -P 13 -p1
 %patch -P 14 -p1
-%patch -P 15 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685998893
+export SOURCE_DATE_EPOCH=1686066913
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -199,7 +197,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1685998893
+export SOURCE_DATE_EPOCH=1686066913
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-%{version}/COPYING %{buildroot}/usr/share/package-licenses/rpm/588760a9f446cebfc4b61485cd09cd768908337f || :
