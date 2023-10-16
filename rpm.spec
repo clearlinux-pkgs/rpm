@@ -5,7 +5,7 @@
 #
 Name     : rpm
 Version  : 4.18.1
-Release  : 176
+Release  : 177
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Summary  : RPM Package Manager
