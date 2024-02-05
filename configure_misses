@@ -1,11 +1,24 @@
 Configure miss: 7z
+Configure miss: 7z
+Configure miss: 7za
 Configure miss: 7za
 Configure miss: 7zip
+Configure miss: 7zip
+Configure miss: fakechroot
 Configure miss: fakechroot
 Configure miss: g++ option to enable C++11 features
+Configure miss: g++ option to enable C++11 features
+Configure miss: gcc option to enable large file support
+Configure miss: gcc option to enable large file support
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: mergesort
+Configure miss: mergesort
+Configure miss: pandoc
 Configure miss: pandoc
 Configure miss: setprogname
+Configure miss: setprogname
 Configure miss: sys/systemcfg.h
+Configure miss: sys/systemcfg.h
+Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
