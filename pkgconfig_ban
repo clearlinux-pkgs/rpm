@@ -3,3 +3,4 @@
 python-${PYTHON_VERSION}
 lua
 rpm-sequoia
+liblzma
