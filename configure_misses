@@ -12,8 +12,6 @@ Configure miss: gcc option to enable large file support
 Configure miss: gcc option to enable large file support
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
-Configure miss: lzma.h
-Configure miss: lzma.h
 Configure miss: mergesort
 Configure miss: mergesort
 Configure miss: pandoc

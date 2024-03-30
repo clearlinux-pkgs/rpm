@@ -7,7 +7,7 @@
 #
 Name     : rpm
 Version  : 4.18.1
-Release  : 179
+Release  : 180
 URL      : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Source0  : https://ftp.osuosl.org/pub/rpm/releases/rpm-4.18.x/rpm-4.18.1.tar.bz2
 Summary  : RPM Package Manager
@@ -38,6 +38,7 @@ BuildRequires : lua-dev
 BuildRequires : pkgconfig(dbus-1)
 BuildRequires : pkgconfig(libarchive)
 BuildRequires : pkgconfig(libgcrypt)
+BuildRequires : pkgconfig(liblzma)
 BuildRequires : pkgconfig(libzstd)
 BuildRequires : pkgconfig(nspr)
 BuildRequires : pkgconfig(nss)
@@ -167,7 +168,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1711744598
+export SOURCE_DATE_EPOCH=1711809038
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -251,7 +252,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1711744598
+export SOURCE_DATE_EPOCH=1711809038
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rpm
 cp %{_builddir}/rpm-%{version}/COPYING %{buildroot}/usr/share/package-licenses/rpm/588760a9f446cebfc4b61485cd09cd768908337f || :
