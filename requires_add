@@ -2,6 +2,7 @@
 # picked up automatically. One name per line, no whitespace.
 clr-rpm-config
 debugedit
+plzip
 python-rpm-packaging
 unzip
 zip
